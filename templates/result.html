@@ -1,0 +1,76 @@
+<html>
+    <head>
+        <style>
+
+.loader {
+  border: 16px solid greenyellow;
+  border-radius: 50%;
+  border-top: 16px solid crimson;
+  width: 120px;
+  height: 120px;
+  -webkit-animation: spin 2s linear infinite; /* Safari */
+  animation: spin 2s linear infinite;
+}
+
+/* Safari */
+@-webkit-keyframes spin {
+  0% { -webkit-transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+body {
+
+      
+    background-image: url('/static/img/bg3.jpg');
+            background-size: cover
+        }
+        </style>
+
+        <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+  <script>
+      
+    $(document).ready(function(){
+        
+        
+        $("#getStarted").hide();
+        $("#getStartedWord").hide();
+        $("#mainImage").hide();
+        $(".results").hide();
+        $(".loader").fadeOut(3000);
+        $("#mainImage").fadeIn(5000);
+        $(".results").fadeIn(5000);
+        
+        
+
+    });
+
+    
+</script>
+        <body> 
+            
+            <center>  
+                        <img id="mainImage" src="/static/img/pexels-photo-106399.jpeg"  class="img-fluid" alt="Responsive image" />
+              
+                
+			
+                    <div class="loader"></div>
+
+                <div class="results">
+                    <h3 style="color: orange;">
+                    The Sale Price is </h3><h3 style="color: orange;">{{predictioninNum}}<br>
+                      {{ prediction }} Dollars
+				</h3>
+			</center>
+                </div>
+            </body>
+            </html>
