@@ -1,0 +1,306 @@
+<html>
+    <head>
+        <style>
+         body {
+            
+            
+            background-image: url('/static/img/bg2.jpg');
+            background-size: cover
+         }
+
+.overlay {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.7);
+  transition: opacity 500ms;
+  visibility: hidden;
+  opacity: 0;
+}
+.overlay:target {
+  visibility: visible;
+  opacity: 1;
+}
+
+.popup {
+  margin: 70px auto;
+  padding: 20px;
+  background: #fff;
+  border-radius: 5px;
+  width: 30%;
+  position: relative;
+  transition: all 5s ease-in-out;
+}
+
+        </style>
+
+        <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="/static/styles.css">
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+  <script>
+      function displaympnme(){
+
+        $("#imaageDiv").hide();
+        $("#getStarted").hide();
+        $("#getStartedWord").hide();
+        
+        $("#formTable").css("display", "block")
+      }
+      function displayloader(){
+        
+        $(".lds-roller").css("display", "inline-block")
+        $(".lds-roller").fadeOut(5000);
+
+
+      }
+
+      function submitForm() {
+       $(".lds-roller").css("display", "overlay")
+        $(".lds-roller").fadeOut(5000);
+
+        document.getElementById("form1").submit()
+    }
+
+    document.getElementById('submit').onclick = function() {
+        setTimeout(submitForm, 3000); 
+    }
+    $(document).ready(function(){
+        
+        
+        $("#imaageDiv").hide();
+        $("#imaageDiv").fadeIn(5000);
+        $("#getStarted").hide();
+        $("#getStarted").fadeIn(5000);
+        $(".lds-roller").css("display", "none")
+
+            
+        
+    });
+</script>
+        <body> 
+            
+              
+                <div  id="imaageDiv" style="margin-left: 400px;" >
+                        <img id="mainImage" src="/static/img/bg.jpg"  class="img-fluid" alt="Responsive image" />
+                </div>
+                            
+                                <br>
+                                <div class="row" id ="getStarted"  >
+                            <h1 style="margin-left: 600px;color:darkgreen">  
+                                  PREDICT HOUSE PRICE</h1>
+                                  
+                                </div>
+                            </div>
+                                <div class="box">
+                            <h1  style="margin-left: 650px;color:darkkhaki !important" id ="getStartedWord"  onclick="displaympnme()"><a href="#popup1"  style="color:rebeccapurple"> 
+                               GET STARTED</h1>
+                            </div>
+                            
+                            <br>
+                            <br>
+                           
+                           
+                            <div id="popup1" class="overlay">
+                                <div class="popup" style="width: 600px;">
+                                    <a class="close" href="#">&times;</a>
+                                    <div class="content">
+                                        
+                                    <form action="{{ url_for('predict') }}" method="POST" id="form1"> 
+                                    <table id="formTable" style="display: none; ">
+                                        <tr>
+                                            <td style="width:300px">
+                                             <h5>Zone Class</h5>
+                                            </td>
+                                            <td >
+                                               
+                                                                                <select id="mszoning" name="mszoning">
+                                                                                    <option value="0">Agriculture</option> 
+                                                                                    <option value="0">Commercial</option> 
+                                                                                    <option value="0">Floating Village Residential</option> 
+                                                                                    <option value="0">Industrial</option> 
+                                                                                    <option value="1">Residential Low Density</option>
+                                                                                    <option value="1">Residential Low Density Park </option>
+                                                                                    <option value="0">Residential High Density</option> 
+                                                                                    <option value="0">Residential Medium Density</option> 
+                                                                                    
+                                                                                  
+                                                                                    
+                                                                                 
+                                                                                </select>
+                                                               
+                                            </td>
+                                            </tr>       
+                                            <tr>
+                                                <td style="width:300px">
+                                                    <h5>Overall Quality of House</h5>
+                                                   </td> 
+                                                   <td>
+                                                    
+                                                    
+                                                    <select id="overAllQuality" name="overAllQuality">
+                                                        <option value="10">Very Excellent</option> 
+                                                        <option value="9">Excellent</option>
+                                                        <option value="8">Very Good</option> 
+                                                        <option value="7">Good</option>
+                                                    
+                                                        <option value="6">Above Average</option> 
+                                                        <option value="5">Average</option>
+                                                    
+                                                        <option value="4">Below Average</option> 
+                                                        <option value="3">Fair</option>
+                                                    
+                                                        <option value="2">Poor</option> 
+                                                        <option value="1">Very Poor</option>
+                                                    
+                                                        
+                                                     
+                                                    </select>        
+                                                   
+                                                   </td>
+                                            </tr>
+                                            <tr>
+                                                <td style="width:300px">
+                                                    <h5> Total square feet of basement area</h5>
+                                                   </td> 
+                                                   <td>
+                                                    <input type= "number" min="0" max= "5000"  id="TotalBsmtSF" name="TotalBsmtSF" required/>
+                                        
+                                                 
+                                                   </td>
+                                            </tr>                                        
+                                            <tr>
+                                                <td style="width:300px">
+                                                    <h5> Second Floor square feet</h5>
+                                                   </td> 
+                                                   <td>
+                                                    <input type= "number" min="0" max= "4000"  id="2ndFlrSF" name="2ndFlrSF" required/>
+                                        
+                                        
+                                                   </td>
+                                            </tr>
+                                            <tr>
+                                                <td style="width:300px">
+                                                 <h5>Type of Dwelling</h5>
+                                                </td>
+                                                <td >
+                                                   
+                                                                                    <select id="BldgType" name="BldgType">
+                                                                                        <option value="0">Single-family Detached</option> 
+                                                                                        <option value="1">Two-family Conversion(Originally one-family)</option>
+                                                                                        <option value="0">Duplex</option> 
+                                                                                        <option value="0">Townhouse End Unit</option> 
+                                                                                        <option value="0">Townhouse Dense Unit</option> 
+
+                                                                                        
+                                                                                     
+                                                                                    </select>
+                                                                   
+                                                </td>
+                                                </tr>
+                                                <tr>
+                                                    <td style="width:300px">
+                                                        <h5>Exterior Quality Materials</h5>
+                                                       </td> 
+                                                       <td>
+                                                        
+                                                        
+                                                        <select id="exteriorQuality" name="exteriorQuality">
+                                                            <option value="ExterQual_Gd ">Good</option> 
+                                                            <option value="ExterQual_TA ">Average/Typical</option> 
+                                                            <option value="ExterQual_Fa ">Fair</option> 
+                                                        
+                                                            
+                                                         
+                                                        </select>        
+                                                       
+                                                       </td>
+                                                </tr>
+                                            
+                                                <tr>
+                                                    <td style="width:300px">
+                                                        <h5>Type of Heating</h5>
+                                                       </td> 
+                                                       <td>
+                                                        
+                                                        
+                                                        <select id="heatingQuality" name="heatingQuality">
+                                                            <option value="Heating_GasW ">Gas hot water or steam heat</option> 
+                                                            <option value="Heating_Wall ">Wall furnace</option> 
+                                                            
+                                                        
+                                                            
+                                                         
+                                                        </select>        
+                                                       
+                                                       </td>
+                                                </tr>
+                                                <tr>
+                                                    <td style="width:300px">
+                                                        <h4>Type of Sale</h4>
+                                                       </td> 
+                                                       <td>
+                                                        
+                                                        
+                                                        <select id="saleType" name="saleType">
+                                                            <option value="SaleType_CWD ">Warranty Deed - Cash</option> 
+                                                            <option value="SaleType_Con ">Contract 15% Down payment regular terms</option> 
+                                                            <option value="SaleType_ConLD ">Contract Low Down</option> 
+                                                            <option value="SaleType_New ">Home just constructed and sold</option> 
+                                                        
+                                                            
+                                                         
+                                                        </select>        
+                                                       
+                                                       </td>
+                                                </tr>
+                                                
+                                                <tr>
+                                                    <td style="width:300px">
+                                                        <h5>Type of road access to property</h5>
+                                                       </td> 
+                                                       <td>
+                                                        
+                                                        
+                                                        <select id="streetType" name="streetType">
+                                                            <option value="Street_Pave">Paved</option> 
+
+                                                            <option value="Street_Gravel">Gravel</option> 
+                                                            
+                                                        
+                                                            
+                                                         
+                                                        </select>        
+                                                       
+                                                       </td>
+                                                </tr>
+                                                                                                                      </table>
+                                 <center>
+                                    <input type="submit" class="btn btn-dark" id= "submit" value="Predict" >
+                                </center>
+                                </form>
+                            </div>
+                        </div>
+                            </div>
+                            
+                  </div>
+
+                  <div class="results">
+                  <h1>  {{ prediction }}</h1>
+                    
+                </div>
+                    </div>
+              
+            
+        
+        </body>
+    </head>
+</html>
+
